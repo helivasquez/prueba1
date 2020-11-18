@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="css/estilo12.css" >
+    <link  rel="stylesheet" href="bostrap/css/bootstrap.min.css" >
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Document</title>
+</head>
+<body onload = "MostrarCanciones()" id="main">
+  <a href="Administrador.html" style="text-decoration:none" class = "btn-close-popup"><h1><</h1></a>
+
+<div class="sol">
+
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Artista</th>
+                    <th scope="col">Album</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Spotify</th>
+                    <th scope="col">Youtube</th>
+                  </tr>
+                </thead>
+                <tbody id="Cuerpo">
+                </tbody>
+              </table>
+
+<script>
+
+
+    function MostrarCanciones(){
+
+        var contenido = document.querySelector('#Cuerpo')
+        contenido.innerHTML = ""
+
+              fetch('https://musicstationbackend201700852.herokuapp.com//cc')
+              .then(response => response.json())
+
+              .catch(error => {
+
+              console.log(error)
+              })
+              .then(res => {
+
+                for (var i in res) {
+                      console.log(res[i])
+                      contenido.innerHTML +=
+                      `<tr>
+                      <th>${res[i].nombre}</th>
+                      <th>${res[i].artista}</th>
+                      <th>${res[i].album}</th>
+                      <th>${res[i].fecha}</th>
+                      <th><img src="${res[i].imagen}" class="img-fluid" height="100%" width="100%"> </th>
+                      <th><iframe src="${res[i].spotify}" width="350" height="430" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> <button type="button" value="${res[i].nombre}" onclick="aceptar(this)" class="btn btn-success">Aceptar cancion</button> <button type="button" value="${res[i].nombre}" onclick="aceptar2(this)" class="btn btn-danger">Rechazar cancion</button></th>
+                      <th><iframe src="${res[i].youtube}" width="560" height="315" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></th>
+                    </tr>`
+                 }
+                })
+        }
+</script>
+<!--AQUI ES PARA ACEPTAR LA SOLICITUD Y INGRESAR AL SISTEMA-->
+<script>
+
+async  function aceptar(boton){
+
+    var title = boton.value
+    sessionStorage.setItem("nombre", title)
+    infor()
+}
+async  function aceptar2(boton){
+
+    var title = boton.value
+    sessionStorage.setItem("nombre", title)
+     infor2()
+}
+</script>
+<!--AQUI ES PARA CARGAR LA INFORMACION-->
+<input id="Titulo"  type="text" class="control1" placeholder="Buscar" style="visibility:hidden">
+<input id="Artista"  type="text" class="control1" placeholder="Buscar" style="visibility:hidden">
+<input id="Album"  type="text" class="control1" placeholder="Buscar" style="visibility:hidden">
+<input id="Fecha"  type="text" class="control1" placeholder="Buscar" style="visibility:hidden">
+<input id="Imagen"  type="text" class="control1" placeholder="Buscar" style="visibility:hidden">
+<input id="Spotify"  type="text" class="control1" placeholder="Buscar" style="visibility:hidden">
+<input id="Youtube"  type="text" class="control1" placeholder="Buscar" style="visibility:hidden">
+<script>
+  async  function infor(){
+        var cargar = sessionStorage.nombre
+        fetch(`https://musicstationbackend201700852.herokuapp.com//c8/${cargar}`)
+                 .then(response => response.json())
+                 .catch(error => {
+                   console.log(error)
+                 })
+                 .then(res =>{
+                   console.log(res)
+                   document.querySelector('#Titulo').value = res.nombre
+                   document.querySelector('#Artista').value = res.artista
+                   document.querySelector('#Album').value = res.album
+                   document.querySelector('#Fecha').value = res.fecha
+                   document.querySelector('#Imagen').value = res.imagen
+                   document.querySelector('#Spotify').value = res.spotify
+                   document.querySelector('#Youtube').value = res.youtube
+                   Regis()
+
+                 })
+           }
+</script>
+<script>
+    async  function infor2(){
+          var cargar = sessionStorage.nombre
+          fetch(`https://musicstationbackend201700852.herokuapp.com//c8/${cargar}`)
+                   .then(response => response.json())
+                   .catch(error => {
+                     console.log(error)
+                   })
+                   .then(res =>{
+                     console.log(res)
+                     document.querySelector('#Titulo').value = res.nombre
+                     document.querySelector('#Artista').value = res.artista
+                     document.querySelector('#Album').value = res.album
+                     document.querySelector('#Fecha').value = res.fecha
+                     document.querySelector('#Imagen').value = res.imagen
+                     document.querySelector('#Spotify').value = res.spotify
+                     document.querySelector('#Youtube').value = res.youtube
+
+                     Eliminar()
+
+                   })
+             }
+  </script>
+<!--AQUI ES PARA GUARDAR LA INFORMACION-->
+<script>
+    function Regis(){
+        var Nombre1 = document.querySelector('#Titulo').value
+        var Nombre2 = document.querySelector('#Artista').value
+        var Nombre3 = document.querySelector('#Album').value
+        var Nombre4 = document.querySelector('#Fecha').value
+        var Nombre5 = document.querySelector('#Imagen').value
+        var Nombre6 = document.querySelector('#Spotify').value
+        var Nombre7 = document.querySelector('#Youtube').value
+        var objeto = {
+          'nombre':Nombre1,
+          'artista':Nombre2,
+          'album':Nombre3,
+          'fecha':Nombre4,
+          'imagen':Nombre5,
+          'spotify':Nombre6,
+          'youtube':Nombre7
+      }
+      console.log(objeto)
+      fetch('https://musicstationbackend201700852.herokuapp.com//cancion', {
+      method: 'POST',
+      body: JSON.stringify(objeto),
+      headers:{
+          'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .catch(err => {
+    console.error('Error:', err)
+    alert("Ocurrio un error, ver la consola")
+    })
+    .then(response =>{
+    console.log('Success',response);
+    console.log(response.message)
+    if(response.message == "Failed"){
+        alert(response.reason)
+    }else{
+     swal('Se ha agregado la cancion a la lista principal','','success');
+    }
+    })
+    }
+</script>
+<!--AQUI ES PARA ELIMINAR-->
+<script>
+
+
+    function Eliminar(){
+
+    var borrar = document.querySelector('#Titulo').value
+
+        fetch(`https://musicstationbackend201700852.herokuapp.com//c8/${borrar}`, {
+        method: 'DELETE',
+
+        }).then(res => res.json())
+        .catch(error => {
+            console.error('Error:', error)
+            alert("Ocurrio un error al consumir la API, revise la consola")
+        })
+        .then(response =>{
+            console.log('Success:', response);
+            swal('Se ha eliminado la cancion',response.message,'success')
+            location.href="Cancionessolicitadas.html"
+        })
+    }
+</script>
+
+
+
+
+
+
+        </div>
+</body>
+</html>

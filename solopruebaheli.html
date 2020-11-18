@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.js"></script>
+    <link  rel="stylesheet" href="bostrap/css/bootstrap.min.css" >
+    <link  rel="stylesheet" href="css/estilopdf.css" >
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.1.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <title>Document</title>
+    <a href="Administrador.html" style="text-decoration:none" class = "btn-close-popup"><h1><</h1></a>
+<div class = "diseños">
+<form class="nada">
+  <h3>Generar reporte de usuarios</h3>
+  <button onclick="javascript:demo();" type="button" class="btn btn-primary">Generar archivo.pdf</button><br><br>
+  <h3>Generar reporte de canciones</h3>
+  <button onclick="javascript: demoFromHTML();" type="button" class="btn btn-primary">Generar archivo.pdf</button>
+</form>
+</div>
+<div class="grid-block" style="background-image: url('img/hl.png'); width: 10%; height: 19vh; "></div>
+    <div class="profile">
+
+        <h1 class="text-light"><a id="logeado"></a></h1>
+
+    </div>
+
+<div class="zi">
+
+  <input type="text" id="tel" name="lname" style="visibility:hidden">
+  <input type="text" id="tel1" name="lname" style="visibility:hidden">
+  <input type="text" id="tel2" name="lname" style="visibility:hidden">
+
+
+  <!--aqui solo van para los usuarios-->
+
+  <input type="text" id="nom" name="lname" style="visibility:hidden">
+  <input type="text" id="ape" name="lname" style="visibility:hidden">
+  <input type="text" id="uss" name="lname" style="visibility:hidden">
+
+</div>
+</head>
+
+
+
+
+
+
+
+<body onload = " CargarInfo()" id = "main" >
+  <div  class="zima" id="content" style="visibility:hidden" >
+    <table class="table">
+
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Usuario</th>
+
+
+          </tr>
+        </thead>
+        <tbody id="CuerpoUsuarios">
+        </tbody>
+      </table>
+      <script>
+
+        function CargarInfo(){
+
+            var nombre = document.querySelector('#logeado')
+            var iniciado = sessionStorage.Usuario
+            //nombre.innerHTML = `Bienvenido: </br> ${iniciado}`
+
+            var tabla = document.querySelector('#CuerpoUsuarios')
+            fetch('https://musicstationbackend201700852.herokuapp.com//Datos')
+            .then(response => response.json())
+            .catch(error => {
+                console.log(error)
+              })
+              .then(res => {
+
+                for (var i in res) {
+                    tabla.innerHTML +=
+
+                    `<tr>
+                        <th>  ${res[i].Nombre} </th>
+                        <th>  ${res[i].Apellido} </th>
+                        <th>  ${res[i].Usuario} </th>
+                    </tr>`
+
+                    }
+
+                })
+
+                informacion()
+                MostrarCanciones()
+              }
+        </script>
+
+      <div id="elementH"></div>
+
+      </div>
+
+
+
+
+<div class="diseño" id="customers" style="visibility:hidden" >
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col" >Titulo</th>
+        <th  scope="col"> Artista</th>
+        <th scope="col" >Album</th>
+        <th scope="col" >Fecha</th>
+        <th scope="col" >Imagen</th>
+      </tr>
+    </thead>
+    <tbody id="Cuerpo">
+    </tbody>
+  </table>
+
+
+  <script>
+
+    function MostrarCanciones(){
+
+      var contenido = document.querySelector('#Cuerpo')
+      contenido.innerHTML = ""
+
+            fetch('https://musicstationbackend201700852.herokuapp.com//c')
+            .then(response => response.json())
+
+            .catch(error => {
+
+            console.log(error)
+            })
+            .then(res => {
+
+              for (var i in res) {
+                    console.log(res[i])
+                    contenido.innerHTML +=
+                    `<tr>
+                    <th>${res[i].nombre}</th>
+                    <th>${res[i].artista}</th>
+                    <th>${res[i].album}</th>
+                    <th>${res[i].fecha}</th>
+                    <th>${res[i].imagen}</th>
+                  </tr>`
+               }
+              })
+      }
+
+  </script>
+
+  <div id="elementH2"></div>
+
+</div>
+
+
+
+<script type="text/javascript">
+  function demoFromHTML() {
+    var tel = $( '#tel' ).val();
+    var t = $( '#tel1' ).val();
+    var l1 = $( '#tel2' ).val();
+
+      var pdf = new jsPDF('p', 'pt', 'a1');
+      // source can be HTML-formatted string, or a reference
+      // to an actual DOM element from which the text will be scraped.
+      source = $('#customers')[0];
+
+      // we support special element handlers. Register them with jQuery-style 
+      // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+      // There is no support for any other type of selectors 
+      // (class, of compound) at this time.
+      specialElementHandlers = {
+          // element with id of "bypass" - jQuery style selector
+          '#bypassme': function(element, renderer) {
+              // true = "handled elsewhere, bypass text extraction"
+              return true
+          }
+      };
+      margins = {
+          top: 300,
+          bottom: 100,
+          left: 60,
+          width: 522
+      };
+      // all coords and widths are in jsPDF instance's declared units
+      // 'inches' in this case
+      pdf.fromHTML(
+              source, // HTML string or DOM elem ref.
+              margins.left, // x coord
+              margins.top, {// y coord
+                  'width': margins.width, // max width of content on PDF
+                  'elementHandlers': specialElementHandlers
+              },
+      function(dispose) {
+          // dispose: object with X, Y of the last line add to the PDF 
+          //          this allow the insertion of new lines after html
+          pdf.setTextColor(52, 152, 219);
+          pdf.setFont("helvetica");
+pdf.setFontType("bold");
+pdf.setFontSize(19);
+          pdf.text( 500, 25, 'CANCIONES REGISTRADAS EN EL SISTEMA' );
+          pdf.text( 200, 30, '..............................................................................................................................................................................................................................................' );
+          pdf.text( 60, 50, 'Reporte fue creado por:' );
+          pdf.text( 60, 110, 'Nombre:' );
+          pdf.text( 60, 130, 'Apellido:' );
+          pdf.text( 60, 150, 'Nombre de usuario:' );
+          pdf.text( 260, 110, t );
+          pdf.text( 260, 130, l1 );
+          pdf.text( 260, 150, tel );
+          pdf.text( 60, 190, '.................................................................................................................................................................................................................................................................................................' );
+          pdf.text( 60, 250, 'La informacion que acontinuacion se presenta en en la  tabla corresponde a los datos de cada cancion ' );
+          pdf.text( 60, 290, 'Dato de las canciones:' );
+
+          pdf.save('ReporteCanciones.pdf');
+      }
+      , margins);
+  }
+</script>
+
+<!--<qui es para los reprotes de los suarios con suere me emprimira bien-->
+
+  <script type="text/javascript">
+    function demo() {
+      var tel = $( '#uss' ).val();
+      var t = $( '#nom' ).val();
+      var l1 = $( '#ape' ).val();
+
+        var pdf = new jsPDF('p', 'pt', 'a3');
+        // source can be HTML-formatted string, or a reference
+        // to an actual DOM element from which the text will be scraped.
+        source = $('#content')[0];
+
+        // we support special element handlers. Register them with jQuery-style
+        // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+        // There is no support for any other type of selectors
+        // (class, of compound) at this time.
+        specialElementHandlers = {
+            // element with id of "bypass" - jQuery style selector
+            '#bypassme': function(element, renderer) {
+                // true = "handled elsewhere, bypass text extraction"
+                return true
+            }
+        };
+        margins = {
+            top: 300,
+            bottom: 100,
+            left: 60,
+            width: 522
+        };
+        // all coords and widths are in jsPDF instance's declared units
+        // 'inches' in this case
+        pdf.fromHTML(
+                source, // HTML string or DOM elem ref.
+                margins.left, // x coord
+                margins.top, {// y coord
+                    'width': margins.width, // max width of content on PDF
+                    'elementHandlers': specialElementHandlers
+                },
+        function(dispose) {
+            // dispose: object with X, Y of the last line add to the PDF
+            //          this allow the insertion of new lines after html
+            pdf.setTextColor(52, 152, 219);
+            pdf.setFont("helvetica");
+  pdf.setFontType("bold");
+  pdf.setFontSize(12);
+            pdf.text( 300, 25, 'USUARIOS REGISTRADAS EN EL SISTEMA' );
+            pdf.text( 200, 30, '..........................................................................................................................................................................' );
+            pdf.text( 60, 50, 'Reporte fue creado por:' );
+            pdf.text( 60, 110, 'Nombre:' );
+            pdf.text( 60, 130, 'Apellido:' );
+            pdf.text( 60, 150, 'Nombre de usuario:' );
+            pdf.text( 260, 110, t );
+            pdf.text( 260, 130, l1 );
+            pdf.text( 260, 150, tel );
+            pdf.text( 60, 190, '..........................................................................................................................................................................................................' );
+            pdf.text( 60, 220, 'La informacion que acontinuacion se presenta en en la  tabla corresponde a los ' );
+            pdf.text( 60, 240, ' datos de casa usuario registrado con nombre , apellido y nombre de usuario ' );
+            pdf.text( 60, 260, ' se ha protegindo la contraseña de los usuarios por seguridad ' );
+            pdf.text( 60, 290, 'Dato de los usuarios:' );
+
+            pdf.save('ReporteCanciones.pdf');
+        }
+        , margins);
+    }
+  </script>
+
+
+
+
+
+
+<!--fin de este linea de script-->
+
+
+
+<script>
+
+  function informacion(){
+
+  var cargar = sessionStorage.Usuario
+   fetch(`https://musicstationbackend201700852.herokuapp.com//Datosper/${cargar}`)
+              .then(response => response.json())
+              .catch(error => {
+                console.log(error)
+              })
+              .then(res =>{
+                console.log(res)
+
+                document.querySelector('#tel').value = res.Usuario
+                document.querySelector('#tel1').value = res.Nombre
+                document.querySelector('#tel2').value = res.Apellido
+
+                document.querySelector('#nom').value = res.Nombre
+                document.querySelector('#ape').value = res.Apellido
+                document.querySelector('#uss').value = res.Usuario
+
+
+              })
+        }
+
+</script>
+
+</body>
+</html>

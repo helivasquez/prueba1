@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="css/estilo13.css" >
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn:wght@600&display=swap" rel="stylesheet">
+    <link  rel="stylesheet" href="bostrap/css/bootstrap.min.css" >
+    <title>Document</title>
+</head>
+<body onload = "informacion()" id="main" >
+<div class="primero">
+<div class = "dis">
+
+</div>
+<div class = "d">
+    <h1>Perfil Usuario :</h1>
+    </div>
+
+<div class = "dis2">
+</div>
+
+</div>
+<div class = "dis4">
+</div>
+<div class = "dis5">
+</div>
+
+<div class = "ven1">
+<form class="a">
+
+    <label>Nombre</label>
+    <input id="Nombre"   type="text" class="form-control2" placeholder="" >
+    <label>Apellido</label>
+    <input id="Apellido"  type="text" class="form-control3" placeholder="" >
+    <label>Nombre de Usuario</label>
+    <input id="Usuario"   type="text" class="form-control4" placeholder="" >
+</form>
+</div>
+<div class = "ven2">
+    <form class="b">
+        <label>Contraseña de usuario</label>
+        <input id="Contraseña"  type="text" class="form-control5" placeholder=""  >
+        <label>Contraseña de confirmacion</label>
+        <input id="Contraseña2"  type="text" class="form-control5" placeholder=""  >
+    </form>
+</div>
+<div class = "ven3">
+    <form class="c">
+        <a href = "#modal" style="text-decoration:none" class="open">Modificar</a>
+        <button  href="#modal" type="button" class="btn btn-success">Modificar</button>
+        <button onclick = "javascript:regresar()" type="button" class="btn btn-danger">Regresar</button>
+    </form>
+</div>
+
+<div class = "ven4">
+    <form class="b">
+
+        <input id="Usuarioprincipal"  type="text" class="form-control5" placeholder=""  >
+
+    </form>
+</div>
+</div>
+<div class="container-all" id="modal">
+<div class = "popup">
+    <div class = "container-input">
+        <div class = "cont">
+            <h1 >Datos del Usuario</h1>
+        <form class="a">
+
+            <label>Nombre</label>
+            <input id="Nombre1"   type="text" class="form-control2" placeholder="" >
+            <label>Apellido</label>
+            <input id="Apellido1"  type="text" class="form-control3" placeholder="" >
+            <label>Nombre de Usuario</label>
+            <input id="Usuario1"   type="text" class="form-control4" placeholder="" >
+        </form>
+        </div>
+        <div class = "cont2">
+
+        <form class="a">
+
+            <label>Contraseña de usuario</label>
+            <input id="Contraseña1"   type="text" class="form-control2" placeholder="" >
+            <label>Contraseña de confirmacion</label>
+            <input id="Contraseña21"  type="text" class="form-control3" placeholder="" >
+
+        </form>
+        <div class = "ven8">
+            <form class="c">
+
+                <button onclick = "javascript:modificar()" type="button" class="btn btn-danger">Aceptar</button>
+            </form>
+        </div>
+    </div>
+<a href="#" style="text-decoration:none" class = "btn-close-popup">X</a>
+</div>
+</div>
+<script>
+
+function regresar(){
+
+
+location.href = "Administrador.html"
+
+}
+</script>
+<script>
+
+    function informacion(){
+
+
+
+        var cargar = sessionStorage.Usuario
+
+         // var cargar = sessionStorage.buscar
+       fetch(`https://musicstationbackend201700852.herokuapp.com//Datosper/${cargar}`)
+                .then(response => response.json())
+                .catch(error => {
+                  console.log(error)
+                })
+                .then(res =>{
+                  console.log(res)
+
+                  document.querySelector('#Nombre').value = res.Nombre
+                  document.querySelector('#Apellido').value = res.Apellido
+                  document.querySelector('#Usuario').value = res.Usuario
+                  document.querySelector('#Contraseña').value = res.Contrasenia
+                  document.querySelector('#Contraseña2').value = res.ConfirmarContrasenia
+                  document.querySelector('#Usuarioprincipal').value = res.Usuario
+
+                  document.querySelector('#Nombre1').value = res.Nombre
+                  document.querySelector('#Apellido1').value = res.Apellido
+                  document.querySelector('#Usuario1').value = res.Usuario
+                  document.querySelector('#Contraseña1').value = res.Contrasenia
+                  document.querySelector('#Contraseña21').value = res.ConfirmarContrasenia
+
+                })
+          }
+
+</script>
+
+<!--AQUI ES PARA MODIFICAR LOS DATOS-->
+<script>
+    function modificar(){
+
+
+var Nombre = document.querySelector('#Nombre1').value
+var Apellido = document.querySelector('#Apellido1').value
+var Usuario = document.querySelector('#Usuario1').value
+var Contrasenia = document.querySelector('#Contraseña1').value
+var ConfirmarContrasenia = document.querySelector('#Contraseña21').value
+
+var objeto = {
+    'Nombre':Nombre,
+    'Apellido':Apellido,
+    'Usuario':Usuario,
+    'Contrasenia':Contrasenia,
+    'ConfirmarContrasenia':ConfirmarContrasenia
+}
+console.log(objeto)
+
+fetch(`https://musicstationbackend201700852.herokuapp.com//Datos/${Usuario}`, {
+method: 'PUT',
+body: JSON.stringify(objeto),
+headers:{
+    'Content-Type': 'application/json'
+}
+}).then(res => res.json())
+.catch(error => {
+    console.error('Error:', error)
+    alert("Ocurrio un error al consumir la API, revise la consola")
+})
+.then(response =>{
+    console.log('Success:', response);
+    alert(response.message)
+    //swal('Su Dato ha sido actualizado corectamente','verifique sus datos','success')
+    location.href="Administrador.html"
+})
+    }
+</script>
+
+<!--FIN PARA TERMINAR DE MODIFICAR LOS DATOS-->
+</body>
+</html>

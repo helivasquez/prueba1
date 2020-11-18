@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="css/estilo14.css" >
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn:wght@600&display=swap" rel="stylesheet">
+    <link  rel="stylesheet" href="bostrap/css/bootstrap.min.css" >
+    <title>Document</title>
+</head>
+<body onload = "informacion()" id="main" >
+<div class="primero">
+<div class = "dis">
+
+</div>
+<div class = "d">
+    <h1>Titulo :</h1>
+    </div>
+
+<div class = "dis2">
+</div>
+
+</div>
+<div class = "dis4">
+</div>
+<div class = "dis5">
+</div>
+
+<div class = "ven1">
+<form class="a">
+
+    <label>Titulo</label>
+    <input id="Nom"   type="text" class="form-control2" placeholder="" >
+    <label>Artista</label>
+    <input id="Art"  type="text" class="form-control3" placeholder="" >
+    <label>Album</label>
+    <input id="Al"   type="text" class="form-control4" placeholder="" >
+    <label>Fecha de lanzamiento</label>
+    <input id="Fe"   type="text" class="form-control4" placeholder="" >
+</form>
+</div>
+<div class = "ven2">
+    <form class="b">
+        <label>URl imagen</label>
+        <input id="Im"  type="text" class="form-control5" placeholder=""  >
+        <label>Link de spotify</label>
+        <input id="Spot"  type="text" class="form-control5" placeholder=""  >
+        <label>Link de youtube</label>
+        <input id="You"  type="text" class="form-control5" placeholder=""  >
+    </form>
+</div>
+<div class = "ven3">
+    <form class="c">
+        <a href = "#modal"  class="open">Modificar</a>
+        <button  href="#modal" type="button" class="btn btn-success">Modificar</button>
+        <button onclick = "javascript:regresar()" type="button" class="btn btn-danger">Regresar</button>
+    </form>
+</div>
+
+<div class = "ven4">
+    <form class="b">
+
+        <input id="title"  type="text" class="form-control5" placeholder=""  >
+
+    </form>
+</div>
+</div>
+<div class="container-all" id="modal">
+<div class = "popup">
+    <div class = "container-input">
+        <div class = "cont">
+            <h1 >Datos del Cancion</h1>
+        <form class="a">
+
+            <label>Titulo</label>
+            <input id="Nom1"   type="text" class="form-control2" placeholder="" >
+            <label>Artista</label>
+            <input id="Art1"  type="text" class="form-control3" placeholder="" >
+            <label>Album</label>
+            <input id="Al1"   type="text" class="form-control4" placeholder="" >
+            <label>Fecha de lanzamiento</label>
+            <input id="Fe1"   type="text" class="form-control4" placeholder="" >
+        </form>
+        </div>
+        <div class = "cont2">
+
+        <form class="a">
+
+            <label>Link de la imagen</label>
+            <input id="Im1"   type="text" class="form-control2" placeholder="" >
+            <label>Link de spotify</label>
+            <input id="Spot1"  type="text" class="form-control3" placeholder="" >
+            <label>Link de youtube</label>
+            <input id="You1"  type="text" class="form-control3" placeholder="" >
+
+        </form>
+        <div class = "ven8">
+            <form class="c">
+
+                <button onclick = "javascript:modificar()" type="button" class="btn btn-danger">Aceptar</button>
+            </form>
+        </div>
+    </div>
+<a href="#" class = "btn-close-popup">X</a>
+</div>
+</div>
+<script>
+
+function regresar(){
+
+
+location.href = "canciones.html"
+
+}
+</script>
+<script>
+
+    function informacion(){
+
+
+
+        var cargar = sessionStorage.artista
+
+         // var cargar = sessionStorage.buscar
+       fetch(`https://musicstationbackend201700852.herokuapp.com//c2/${cargar}`)
+                .then(response => response.json())
+                .catch(error => {
+                  console.log(error)
+                })
+                .then(res =>{
+                  console.log(res)
+
+                  document.querySelector('#Nom').value = res.nombre
+                  document.querySelector('#Art').value = res.artista
+                  document.querySelector('#Al').value = res.album
+                  document.querySelector('#Fe').value = res.fecha
+                  document.querySelector('#Im').value = res.imagen
+                  document.querySelector('#Spot').value = res.spotify
+                  document.querySelector('#You').value = res.youtube
+                  document.querySelector('#Nom1').value = res.nombre
+                  document.querySelector('#Art1').value = res.artista
+                  document.querySelector('#Al1').value = res.album
+                  document.querySelector('#Fe1').value = res.fecha
+                  document.querySelector('#Im1').value = res.imagen
+                  document.querySelector('#Spot1').value = res.spotify
+                  document.querySelector('#You1').value = res.youtube
+                  document.querySelector('#title').value = res.nombre
+
+
+
+                })
+          }
+
+</script>
+
+<!--AQUI ES PARA MODIFICAR LOS DATOS-->
+<script>
+    function modificar(){
+
+
+var Nombre = document.querySelector('#Nom1').value
+var Artista = document.querySelector('#Art1').value
+var Album = document.querySelector('#Al1').value
+var Fecha = document.querySelector('#Fe1').value
+var Imagen = document.querySelector('#Im1').value
+var Spotify = document.querySelector('#Spot1').value
+var Youtube = document.querySelector('#You1').value
+
+var objeto = {
+    'nombre':Nombre,
+    'artista':Artista,
+    'album':Album,
+    'fecha':Fecha,
+    'imagen':Imagen,
+    'spotify':Spotify,
+    'youtube':Youtube
+}
+console.log(objeto)
+
+fetch(`https://musicstationbackend201700852.herokuapp.com//cancion/${Artista}`, {
+method: 'PUT',
+body: JSON.stringify(objeto),
+headers:{
+    'Content-Type': 'application/json'
+}
+}).then(res => res.json())
+.catch(error => {
+    console.error('Error:', error)
+    alert("Ocurrio un error al consumir la API, revise la consola")
+})
+.then(response =>{
+    console.log('Success:', response);
+    alert(response.message)
+    //swal('Su Dato ha sido actualizado corectamente','verifique sus datos','success')
+    location.href="Administrador.html"
+})
+    }
+</script>
+
+<!--FIN PARA TERMINAR DE MODIFICAR LOS DATOS-->
+
+
+
+
+
+
+</body>
+</html>

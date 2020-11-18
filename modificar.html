@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bostrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilo5.css">
+
+    <title>Document</title>
+    <div class="profile">
+
+
+
+    </div>
+</head>
+<body onload="informacion()"  id="main">
+<div class="ventana3">
+    <h2><center>Modificar Usuario</center></h2>
+
+    <p><center>
+    <p><label for="name">Nombres</label></p>
+    <input type="text" class="control1" id="nombre" >
+  </center></p>
+    <p><center>
+        <p><label for="name">Apellido</label></p>
+    <input type="text" class="control1" id="apellido" >
+  </center></p>
+  <p><center>
+    <p><label for="name">Usuario</label></p>
+    <input type="text" class="control1" id="usuario" >
+  </center></p>
+  <p><center>
+    <p><label for="name">Contraseña</label></p>
+    <input type="text" class="control1" id="contrasenia" >
+  </center></p>
+  <p><center>
+    <p><label for="name">Contraseña Confirmada</label></p>
+    <input type="text" class="control1"  id="confirmar">
+
+  </center></p>
+  <p><center>
+    <button onclick="javascript:modificar()" class="btn btn-danger" type="button">Modificar</button>
+    <button onclick="javascript:Eliminar()" class="btn btn-success" type="button">Eliminar</button>
+  </center></p>
+  <p><center>
+    <button onclick="javascript:regresar()" class="btn btn-warning" type="button">Regresar</button>
+
+  </center></p>
+<script>
+    function regresar(){
+
+        location.href="Administrador.html"
+    }
+</script>
+
+
+
+  <script>
+
+    function informacion(){
+
+
+
+      var cargar = sessionStorage.buscar
+
+       // var cargar = sessionStorage.buscar
+
+     fetch(`https://musicstationbackend201700852.herokuapp.com//Datosper/${cargar}`)
+              .then(response => response.json())
+              .catch(error => {
+                console.log(error)
+              })
+              .then(res =>{
+                console.log(res)
+
+                document.querySelector('#nombre').value = res.Nombre
+                document.querySelector('#apellido').value = res.Apellido
+                document.querySelector('#usuario').value = res.Usuario
+                document.querySelector('#contrasenia').value = res.Contrasenia
+                document.querySelector('#confirmar').value = res.ConfirmarContrasenia
+              })
+        }
+
+         </script>
+
+        </div>
+
+
+        <script>
+            function modificar(){
+
+
+        var Nombre = document.querySelector('#nombre').value
+        var Apellido = document.querySelector('#apellido').value
+        var Usuario = document.querySelector('#usuario').value
+        var Contrasenia = document.querySelector('#contrasenia').value
+        var ConfirmarContrasenia = document.querySelector('#confirmar').value
+
+        var objeto = {
+            'Nombre':Nombre,
+            'Apellido':Apellido,
+            'Usuario':Usuario,
+            'Contrasenia':Contrasenia,
+            'ConfirmarContrasenia':ConfirmarContrasenia
+        }
+        console.log(objeto)
+
+        fetch(`https://musicstationbackend201700852.herokuapp.com//Datos/${Usuario}`, {
+        method: 'PUT',
+        body: JSON.stringify(objeto),
+        headers:{
+            'Content-Type': 'application/json'
+        }
+        }).then(res => res.json())
+        .catch(error => {
+            console.error('Error:', error)
+            alert("Ocurrio un error al consumir la API, revise la consola")
+        })
+        .then(response =>{
+            console.log('Success:', response);
+            alert(response.message)
+            location.href="Administrador.html"
+        })
+            }
+        </script>
+<script>
+    function Eliminar(){
+        var Usuario = document.querySelector('#usuario').value
+        fetch(`https://musicstationbackend201700852.herokuapp.com//Datos/${Usuario}`, {
+        method: 'DELETE',
+
+        }).then(res => res.json())
+        .catch(error => {
+            console.error('Error:', error)
+            alert("Ocurrio un error al consumir la API, revise la consola")
+        })
+        .then(response =>{
+            console.log('Success:', response);
+            alert(response.message)
+            location.href="Administrador.html"
+        })
+    }
+</script>
+
+</body>
+</html>

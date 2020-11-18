@@ -1,0 +1,49 @@
+.cuadrous{
+
+position: absolute;
+height: 30px;
+width : 20%;
+left : 2% ;
+top : 22%;
+
+color: rgb(233, 227, 227);
+border:none ;
+border-radius: 20px;
+
+}
+
+.cuadrous input{
+
+    font-size: 20px;
+    padding: 10px;
+text-align: center;
+    border:none ;
+    border-radius: 20px;
+background-color:  rgb(52,52,52);
+color: white;
+    }
+
+    .cuadrous1{
+
+        position: absolute;
+        height: 30px;
+        width : 20%;
+        left : 2% ;
+        top : 25%;
+
+        color: rgb(233, 227, 227);
+        border:none ;
+        border-radius: 20px;
+
+        }
+
+        .cuadrous1 input{
+
+            font-size: 20px;
+            padding: 10px;
+        text-align: center;
+            border:none ;
+            border-radius: 20px;
+        background-color:  rgb(52,52,52);
+        color: white;
+            }

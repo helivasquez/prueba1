@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="css/estilocom.css" >
+    <link  rel="stylesheet" href="bostrap/css/bootstrap.min.css" >
+    <title>Document</title>
+</head>
+<body onload="MostrarCanciones()" id="main">
+
+
+<div class = "central">
+
+</div>
+<div class = "linea1">
+
+
+</div>
+<div class = "linea2">
+
+
+</div>
+<a href="Administrador.html" style="text-decoration:none" class = "btn-close-popup"><h1><</h1></a>
+
+<div class="comen">
+    <h1>Comentarios de los usuarios</h1>
+    </div>
+<div class = "tablet">
+    <table class="table" align="center">
+        <thead >
+          <tr>
+
+
+
+          </tr>
+
+        </thead>
+        <tbody id="Cuerpo">
+        </tbody>
+      </table>
+<script>
+
+    function MostrarCanciones(){
+
+        var contenido = document.querySelector('#Cuerpo')
+        contenido.innerHTML = ""
+
+              fetch('https://musicstationbackend201700852.herokuapp.com//comentario')
+              .then(response => response.json())
+
+              .catch(error => {
+
+              console.log(error)
+              })
+              .then(res => {
+
+                for (var i in res) {
+                      console.log(res[i])
+                      contenido.innerHTML +=
+                      `<tr>
+
+                      <th colspan="2"><img src="${res[i].imagen}" class="img-fluid" height="10%" width=10%"><br><br>${res[i].nombrecan}<br><br></th>
+                      <tr>
+                      <th><h5>Usuario  :</h5>${res[i].nombreus}</th>
+                      <th><h5>Comentario  :</h5>${res[i].comentario}</th>
+
+                      </tr>
+
+                    </tr>`
+                 }
+                })
+        }
+
+</script>
+</div>
+</body>
+</html>

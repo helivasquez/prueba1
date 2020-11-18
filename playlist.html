@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="css/estili4.css" >
+    <link  rel="stylesheet" href="css/estiloplay.css" >
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link  rel="stylesheet" href="css/estilocomentario.css" >
+    <link  rel="stylesheet" href="bostrap/css/bootstrap.min.css" >
+    <title>Document</title>
+    <div class="profile">
+
+
+
+    </div>
+</head>
+
+<body onload="infor()"  id="main">
+
+    <div class="tit">
+
+<h1>Detalles de la Cancion</h1>
+</div>
+
+
+<input type="text" class="control1" id="spo" style="visibility:hidden"><br><br>
+<input type="text" class="control1" id="spo2" style="visibility:hidden"><br><br>
+<input type="text" class="control1" id="us" style="visibility:hidden"><br><br>
+<input type="text" class="control1" id="imagen" style="visibility:hidden"><br><br>
+<input type="text" class="control1" id="artis" style="visibility:hidden"><br><br>
+<input type="text" class="control1" id="io" style="visibility:hidden"><br><br>
+<input type="text" class="control1" id="io1" style="visibility:hidden"><br><br>
+
+    <div class="nds">
+        <form>
+        <label>Titulo de la cancion</label>
+        <input type="text" class="control1" id="titulo" ><br><br>
+        <label>Nombre del artista</label>
+        <input type="text" class="control1" id="nom" ><br><br>
+    </form>
+
+</div>
+    <div class="nds4">
+        <form>
+
+        <label>Album</label>
+        <input type="text" class="control1" id="Album" ><br><br>
+        <label>Fecha de Produccion</label>
+        <input type="text" class="control1" id="Fecha" ><br><br>
+
+    </form>
+    </div>
+    <div class="nds5">
+        <form>
+
+        <label style="visibility:hidden">Imagen de la cancion</label><br><br>
+        <img id="img" src="" class="img-fluid" height="70%" width="70%" style="visibility:hidden">
+
+
+    </form>
+    </div>
+
+<div class="dns2">
+    <form>
+    <label>Reproductor brindada por Spotify</label><br><br>
+    <iframe id ="frame" src =""  width="270" height="315" frameborder="6" allowtransparency="true" allow="encrypted-media"></iframe><br><br>
+
+</form>
+
+</div>
+
+<div class="dns3">
+    <form>
+    <label>Reproductor brindada por Youtube</label><br><br>
+    <iframe id ="frame2" src =""  width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br><br>
+
+</form>
+
+</div>
+
+<div class="textarea">
+
+<form class="area">
+    <textarea id="txt" name="textarea" rows="5" cols="40"></textarea>
+    <button onclick="Registro()" type="button" class="btn btn-primary">Comentar</button>
+
+</form>
+
+
+</div>
+<div class="media">
+<form class="media2">
+<h2>Comentarios de la cancion</h2>
+    <input type="text" class="control1" id="usuario" ><br><br>
+    <input type="text" class="control1" id="usuario1" ><br><br>
+</form>
+
+</div>
+<div class="media4">
+    <form class="media2">
+
+        <input  type="text" class="control1" id="vv"  readonly><br><br>
+        <input type="text" class="control1" id="vv2" readonly ><br><br>
+    </form>
+
+    </div>
+
+<div class="media3">
+    <form class="media2">
+    <h2>Tus comentarios</h2>
+        <input type="text" class="control1" id="maestro1" ><br><br>
+        <input type="text" class="control1" id="maestro2" ><br><br>
+
+    </form>
+
+    </div>
+    <div class="media5">
+        <form class="media7">
+
+            <input  type="text" class="control1" id="vv3"  readonly><br><br>
+            <input type="text" class="control1" id="vv4" readonly >
+        </form>
+
+        </div>
+    <script>
+
+     async  function infor(){
+
+
+
+         var cargar = sessionStorage.artista
+
+
+         fetch(`https://musicstationbackend201700852.herokuapp.com//c2/${cargar}`)
+                  .then(response => response.json())
+                  .catch(error => {
+                    console.log(error)
+                  })
+                  .then(res =>{
+                    console.log(res)
+
+                    document.querySelector('#titulo').value = res.nombre
+                    document.querySelector('#nom').value = res.artista
+                    document.querySelector('#Album').value = res.album
+                    document.querySelector('#Fecha').value = res.fecha
+                    document.querySelector('#spo').value = res.spotify
+                    document.querySelector('#spo2').value = res.youtube
+                    document.querySelector('#imagen').value = res.imagen
+                    document.querySelector('#artis').value = res.artista
+
+                   // document.querySelector('#frame').value = res.spotify
+                    document.getElementById ('img'). src = res.imagen
+                    document.getElementById ('frame'). src = res.spotify
+                    document.getElementById ('frame2'). src = res.youtube
+                    informacion()
+                    infor2()
+                  })
+            }
+
+             </script>
+
+<script>
+
+
+     function Registro(){
+
+        var tit = document.querySelector('#titulo').value
+        var tx = document.querySelector('#txt').value
+        var gen = document.querySelector('#imagen').value
+        var Us = document.querySelector('#us').value
+        var Us1 = document.querySelector('#nom').value
+
+
+
+
+        var objeto = {
+          'nombrecan':tit,
+          'comentario':tx,
+          'nombreus':Us,
+          'imagen':gen,
+          'artista':Us1
+
+
+      }
+      console.log(objeto)
+
+      fetch('https://musicstationbackend201700852.herokuapp.com//comentario', {
+
+      method: 'POST',
+      body: JSON.stringify(objeto),
+      headers:{
+          'Content-Type': 'application/json'
+      }
+
+    }).then(res => res.json())
+    .catch(err => {
+    console.error('Error:', err)
+    alert("Ocurrio un error, ver la consola")
+    })
+    .then(response =>{
+
+    console.log('Success',response);
+    console.log(response.message)
+    if(response.message == "Failed"){
+        alert(response.reason)
+
+    }else{
+        alert(response.reason)
+        pasar()
+        //location.href="Administrador.html"
+    }
+    })
+    }
+
+
+</script>
+
+<!--AQUI ES PARA METER LOS DATOS DE TODO COMO COMENTARIO PERO PRIMERO CARGAR LA INFORMACION-->
+
+<script>
+
+    function informacion(){
+
+
+
+    var cargar = sessionStorage.Usuario
+
+
+       fetch(`https://musicstationbackend201700852.herokuapp.com//Datosper/${cargar}`)
+                .then(response => response.json())
+                .catch(error => {
+                  console.log(error)
+                })
+                .then(res =>{
+                  console.log(res)
+
+
+                  document.querySelector('#us').value = res.Usuario
+                  document.querySelector('#vv3').value = res.Usuario
+                  document.querySelector('#vv4').value = res.Usuario
+
+
+
+                })
+          }
+
+</script>
+
+
+
+
+
+<!--fin de meter todos los datos asi como los comentarios-->
+
+<script>
+
+    function infor2(){
+
+
+
+
+        var cargar = sessionStorage.artista
+
+
+           fetch(`https://musicstationbackend201700852.herokuapp.com//comentario/${cargar}`)
+                    .then(response => response.json())
+                    .catch(error => {
+                      console.log(error)
+                    })
+                    .then(res =>{
+                      console.log(res)
+
+
+
+                      if(res.nombreus == null){
+
+                      }else{
+                        document.querySelector('#usuario').value = res.comentario
+                        document.querySelector('#vv').value = res.nombreus
+                        document.querySelector('#vv2').value = res.nombreus
+
+
+                      }
+
+
+                    })
+              }
+
+  </script>
+
+
+
+
+<script>
+
+function pasar(){
+
+dato = document.getElementById('txt').value;
+document.getElementById('maestro1').value = dato;
+
+}
+</script>
+
+
+
+<a href="cliente.html" style="text-decoration:none" class = "btn-close-popup"><h1><</h1></a>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+.media5{
+
+  width: 11%;
+  height: 200px;
+  left: 64%;
+  top: 77.2%;
+  position: absolute;
+
+
+  }
+
+  .media5 form{
+    position: absolute;
+      width: 75%;
+      padding: 40px 3px;
+
+      left: 0%;
+
+    text-align: center;
+      border-radius: 20px;
+      }
+
+      .media5 form input{
+
+          width: 100%;
+          margin-top: 0px;
+          padding: 12px;
+          border:none;
+
+          background: #F2F2F2;
+          font-size: 16px;
+          outline: none;
+          border-radius: 5px;
+          }
+
+
+
+
+
+.media4{
+
+  width: 10%;
+  height: 200px;
+  left: 28%;
+  top: 77.2%;
+  position: absolute;
+
+
+  }
+
+  .media4 form{
+
+      width: 75%;
+      padding: 40px 3px;
+
+      left: 0%;
+      position: absolute;
+    text-align: center;
+      border-radius: 20px;
+      }
+
+      .media4 form input{
+
+          width: 100%;
+          margin-top: 0px;
+          padding: 12px;
+          border:none;
+          background: #F2F2F2;
+          font-size: 16px;
+          outline: none;
+        text-align: center;
+        border-radius: 5px;
+          }
+
+
+
+
+
+
+
+.media{
+
+width: 40%;
+height: 200px;
+left: 34%;
+top: 70%;
+position: absolute;
+
+
+}
+
+.media form{
+
+    width: 75%;
+    padding: 40px 3px;
+
+    left: 0%;
+    position: absolute;
+  text-align: center;
+    border-radius: 20px;
+    }
+
+    .media form input{
+
+        width: 100%;
+        margin-top: 0px;
+        padding: 12px;
+        border:none;
+        background: #F2F2F2;
+        font-size: 16px;
+        outline: none;
+      text-align: center;
+      border-radius: 5px;
+        }
+        .media3{
+
+            width: 40%;
+            height: 200px;
+            left: 65%;
+            top: 70%;
+            position: absolute;
+
+            }
+
+            .media3 form{
+
+                width: 75%;
+                padding: 40px 3px;
+
+                left: 0%;
+                position: absolute;
+              text-align: center;
+                border-radius: 20px;
+                }
+
+                .media3 form input{
+
+                    width: 100%;
+                    margin-top: 0px;
+                    padding: 12px;
+                    border:none;
+                    background: #F2F2F2;
+                    font-size: 16px;
+                    outline: none;
+                  text-align: center;
+                  border-radius: 5px;
+                    }

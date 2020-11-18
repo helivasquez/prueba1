@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="css/estilo11.css" >
+    <link  rel="stylesheet" href="css/estilop.css" >
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn:wght@600&display=swap" rel="stylesheet">
+    <title>Document</title>
+
+</head>
+<body>
+
+<div id="contanedor">
+
+    <div id ="carga"></div>
+</div>
+
+
+
+
+<div class = "estilo">
+
+<h1>Tus Canciones</h1>
+</div>
+<div class = "estilo2">
+
+    <table class="table">
+        <thead align="center" >
+    <tr>
+                 <th scope="col"><h3>Spotify</h3></th>
+                 <th scope ="col"><h3>Youtube</h3></th>
+
+    </tr>
+        </thead>
+        <tbody id="Cuerpo">
+        </tbody>
+      </table>
+
+
+      <script>
+
+        function CargarInfo(){
+          var contenido = document.querySelector('#Cuerpo')
+          contenido.innerHTML = ""
+            fetch('https://musicstationbackend201700852.herokuapp.com//c4')
+            .then(response => response.json())
+            .catch(error => {
+                console.log(error)
+              })
+              .then(res => {
+
+                for (var i in res) {
+                  console.log(res[i])
+                  contenido.innerHTML +=
+                  `<tr>
+
+                   <th><iframe src="${res[i].cancion}" width="350" height="430" frameborder="0" allowtransparency="true" allow="encrypted-media" ></iframe></th>
+                   <th><iframe src="${res[i].cancion2}" width="560" height="315" frameborder="0" allowtransparency="true" allow="encrypted-media" ></iframe></th>
+
+                </tr>`
+                    }
+
+                })
+            }
+        </script>
+
+
+
+
+
+
+
+
+
+    </div>
+
+    <script>
+
+
+
+
+
+    </script>
+    <script>
+
+
+        window.onload  = function(){
+            CargarInfo()
+        var cont = document.getElementById('contanedor');
+
+        cont.style.visibility = 'hidden';
+        cont.style.opacity = '0';
+
+
+
+        }
+
+        </script>
+        <a href="cliente.html" style="text-decoration:none" class = "btn-close-popup"><h1><</h1></a>
+</body>
+</html>

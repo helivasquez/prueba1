@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="css/estilo10.css" >
+    <link  rel="stylesheet" href="css/estiloport.css" >
+    <title>Document</title>
+    <a href="cliente.html" style="text-decoration:none" class = "btn-close-popup"><h1><</h1></a>
+</head>
+<body  onload="infor()"  id="main"   >
+
+
+    <div class="nds5">
+        <form>
+
+        <label><h1>Portada de la Cancion</label></h1><br><br>
+        <img id="img" src="" class="img-fluid" height="30%" width="30%">
+
+    </form>
+    </div>
+
+
+    <script>
+
+        function infor(){
+          var cargar = sessionStorage.ar
+          fetch(`https://musicstationbackend201700852.herokuapp.com//c2/${cargar}`)
+                   .then(response => response.json())
+                   .catch(error => {
+                     console.log(error)
+                   })
+                   .then(res =>{
+                     console.log(res)
+
+                     document.getElementById ('img'). src = res.imagen
+
+                   })
+             }
+              </script>
+              
+</body>
+</html>

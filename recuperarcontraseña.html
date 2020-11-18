@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="css/estilo.css" >
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <link  rel="stylesheet" href="bostrap/css/bootstrap.min.css" >
+    <title>Document</title>
+</head>
+<body>
+    <div class ="recuperarcontraseña" id="ventanita_2">
+     <h1 ><center>Recuperar Contraseña</center></h1>
+     <br></br>
+    <center><label for="fname">Ingrese nombre de usuario</label></center>
+    <center><input class="borde" type="text" id="Usuario" name="fname"><br><br></center>
+     <center><button onclick="Buscar()"  type="button" class="btn btn-success">Buscar Contraseña</button></center>
+     <br></br>
+     <br></br>
+     <center><button  onclick="regresar()"  type="button" class="btn btn-danger">Regresar</button></center>
+    <!--<center><label for="lname">Su contraseña es</label></center>-->
+<center><input style="visibility:hidden" id="contrasenia" name="fname"><br><br></center>
+
+    </div>
+<script>
+
+    function Buscar(){
+
+        var username = document.querySelector('#Usuario').value
+
+
+        var objeto = {
+          'Usuario': username
+
+
+      }
+      console.log(objeto)
+
+      fetch('https://musicstationbackend201700852.herokuapp.com//Buscar2', {
+
+      method: 'POST',
+      body: JSON.stringify(objeto),
+      headers:{
+          'Content-Type': 'application/json'
+      }
+
+      }).then(res => res.json())
+
+      .catch(err => {
+      console.error('Error:', err)
+      alert("Ocurrio un error, ver la consola")
+      })
+      .then(response =>{
+
+      console.log(response);
+
+      console.log(response.message)
+
+      if(response.message == "Failed"){
+        //alert("El Usuario que Buscas No Existe")
+
+        swal('No existe el usuario:','No tiene contraseña ','error');
+      }else{
+        var c = document.querySelector('#contrasenia')
+
+         c.value = response.Contrasenia
+         swal('Su Contraseña es:', c.value = response.Contrasenia,'success');
+
+
+      //location.href="index.html"
+      }
+      })
+      }
+
+
+
+</script>
+<script>
+
+function regresar(){
+
+
+    location.href="index.html"
+
+
+
+}
+</script>
+</body>
+</html>

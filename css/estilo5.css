@@ -1,0 +1,36 @@
+.ventana3{
+
+    background: rgb(255, 255, 255);
+   
+    width: 60%;
+    height: 660px;
+    padding: 33px;
+    min-height: 250px;
+    border-radius: 22px;
+    position: absolute;
+    left: 20%;
+    top: 0%;
+
+
+}
+
+.control1 {
+
+
+    border-radius: 5px;
+    border: .5;
+    border-color: rgb(183, 185, 185);
+font-size: 15px;
+
+
+
+}
+.label1{
+
+    left: 20%;
+    top: 5%;
+
+
+
+
+}

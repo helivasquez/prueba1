@@ -1,0 +1,49 @@
+.diseños {
+
+
+  align-items: center;
+  width: 100%;
+  max-width: 380px;
+  position: absolute;
+  top: 130px;
+  left: 30%;
+  background-color: aqua;
+text-align: center;
+
+        }
+
+    .diseños form{
+
+  width: 100%;
+  padding: 89px 20px;
+
+
+  position: absolute;
+
+  border-radius: 20px;
+
+    }
+.grid-block{
+
+position: absolute;
+text-align: center;
+
+left:40%;
+top: 5%;
+
+
+}
+.btn-close-popup{
+    width:80px;
+    height: 80px;
+    position: absolute;
+    right: -20px;
+    left: 4%;
+    top: 12%;
+    padding: 20px;
+    background: rgb(68, 67, 67);
+    color: white;
+    border-radius: 50%;
+    line-height: 10px;
+
+    }

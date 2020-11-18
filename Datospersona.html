@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="bostrap/css/bootstrap.min.css" >
+
+    <title>Document</title>
+
+       <div class="profile">
+
+            <h1 class="text-light"><a id="logeado"></a></h1>
+
+
+
+       </div>
+</head>
+<body onload="CargarInfo()" id="main">
+
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="CuerpoUsuarios">
+        </tbody>
+      </table>
+
+<script>
+
+    function CargarInfo(){
+        var nombre = document.querySelector('#logeado')
+        var iniciado = sessionStorage.Usuario
+        nombre.innerHTML = `Bienvenido: </br> ${iniciado}`
+        var tabla = document.querySelector('#CuerpoUsuarios')
+        fetch('https://musicstationbackend201700852.herokuapp.com//Datos')
+        .then(response => response.json())
+        .catch(error => {
+            console.log(error)
+          })
+          .then(res => {
+
+
+            for (var i in res) {
+                tabla.innerHTML +=
+                `<tr>
+                    <th>  ${res[i].Nombre} </th>
+                    <th>  ${res[i].Apellido} </th>
+                    <th>  ${res[i].Usuario} </th>
+                    <th> <button type="button" value="${res[i].Usuario}" onclick="verUsuario(this)" class="btn btn-success">Modificar</button> </th>
+                    <th> <button type="button" value="${res[i].Usuario}" onclick="verUsuario(this)" class="btn btn-danger">Eliminar</button> </th>
+
+                  </tr>`
+                }
+
+            })
+        }
+    </script>
+
+    </body>
+</html>

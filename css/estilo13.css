@@ -1,0 +1,325 @@
+*{
+
+
+  text-decoration: none;
+}
+
+.container-all:target {
+
+background:rgba(0,0,0,0.8);
+visibility: visible;
+opacity: 1;
+}
+
+
+.container-all{
+
+
+width: 100%;
+height: 100%;
+position: fixed;
+visibility: hidden;
+opacity: 0;
+transition: all 600ms;
+
+}
+
+.open{
+
+position: absolute;
+top: 20%;
+left: 37%;
+transform: translate(-50%,-50%);
+color: rgb(255, 255, 255);
+display: block;
+background: rgb(11, 241, 80);
+padding: 10px 22px;
+border-radius: 10px;
+
+
+}
+
+.popup{
+width: 100%;
+max-width: 800px;
+height: 500px;
+display: flex;
+position: relative;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+background:white;
+}
+
+container-input{
+
+width: 60%;
+padding: 50px;
+overflow-y: auto;
+
+
+}
+container-input h1{
+
+  font-size: 30px;
+  }
+.btn-close-popup{
+width:50px;
+height: 50px;
+position: absolute;
+right: -20px;
+top: -20px;
+padding: 20px;
+background: black;
+color: white;
+border-radius: 50%;
+line-height: 10px;
+
+
+}
+
+.dis{
+
+position: absolute;
+width: 80%;
+height: 100px;
+left: 12%;
+top: 5%;
+text-align: left;
+border-radius: 10px;
+
+}
+
+
+
+    .ven1 {
+        width: 50%;
+        height: 350px;
+background-color: rgb(255, 253, 253);
+          left: 10%;
+          top : 23%;
+          position: absolute;
+          border-radius: 20px;
+        }
+
+        .ven1 form {
+          width: 70%;
+          padding: 30px 0px;
+          left: 2%;
+          position: absolute;
+        text-align: center;
+          border-radius: 20px;
+          }
+
+          .ven1 form input{
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            border:none;
+            background-color: rgb(212, 211, 211);
+            font-size: 16px;
+            outline: none;
+          text-align: center;
+          border-radius: 15px;
+
+            }
+
+            .cont {
+              width: 50%;
+              height: 350px;
+      background-color: rgb(255, 253, 253);
+                left: 10%;
+                top : 10%;
+                position: absolute;
+                border-radius: 20px;
+              }
+
+              .cont form {
+                width: 70%;
+                padding: 30px 0px;
+                left: 2%;
+                position: absolute;
+              text-align: center;
+                border-radius: 20px;
+                }
+
+                .cont form input{
+                  width: 100%;
+                  margin-top: 20px;
+                  padding: 10px;
+                  border:none;
+                  background-color: rgb(212, 211, 211);
+                  font-size: 16px;
+                  outline: none;
+                text-align: center;
+                border-radius: 15px;
+
+                  }
+
+                  .cont2 {
+                    width: 50%;
+                    height: 350px;
+            background-color: rgb(255, 253, 253);
+                      left: 50%;
+                      top : 20%;
+                      position: absolute;
+                      border-radius: 20px;
+                    }
+
+                    .cont2 form {
+                      width: 70%;
+                      padding: 30px 0px;
+                      left: 2%;
+                      position: absolute;
+                    text-align: center;
+                      border-radius: 20px;
+                      }
+
+                      .cont2 form input{
+                        width: 100%;
+                        margin-top: 20px;
+                        padding: 10px;
+                        border:none;
+                        background-color: rgb(212, 211, 211);
+                        font-size: 16px;
+                        outline: none;
+                      text-align: center;
+                      border-radius: 15px;
+
+                        }
+
+            .ven2 {
+                width: 40%;
+                height: 350px;
+        background-color: rgb(255, 255, 255);
+                  left: 50%;
+                  top : 23%;
+                  position: absolute;
+                  border-radius: 20px;
+                }
+
+                .ven2 form {
+                  width: 70%;
+                  padding: 30px 0px;
+                  left: 0%;
+
+                  position: absolute;
+                text-align: center;
+                  border-radius: 20px;
+                  }
+
+                  .ven2 form input{
+                    width: 100%;
+                    margin-top: 20px;
+                    padding: 10px;
+                    border:none;
+                    background-color: rgb(212, 211, 211);
+                    font-size: 16px;
+                    outline: none;
+                  text-align: center;
+                  border-radius: 15px;
+
+                    }
+.dis4{
+
+    position: absolute;
+    width: 80%;
+    height: 5px;
+    left: 10%;
+    top: 5%;
+    background-color: rgb(118, 122, 122);
+
+    border-radius: 10px;
+
+
+}
+.dis5{
+    position: absolute;
+    width:  80%;
+    height: 5px;
+    left: 10%;
+    top: 20%;
+    background-color: rgb(118, 122, 122);
+
+    border-radius: 10px;
+
+
+
+}
+
+
+.ven3{
+
+position: absolute;
+width: 30%;
+height: 100px;
+left: 50%;
+top: 63%;
+
+text-align: center;
+}
+.ven8{
+
+  position: absolute;
+  width: 30%;
+  height: 100px;
+  left: 35%;
+  top: 66%;
+
+  text-align: center;
+  }
+.ven4 {
+    width: 30%;
+    height: 40px;
+background-color: rgb(255, 255, 255);
+      left: 33%;
+      top : 6%;
+      position: absolute;
+      border-radius: 20px;
+    }
+
+    .ven4 form {
+      width: 70%;
+      padding: 10px 4px;
+      left: 2%;
+
+      position: absolute;
+    text-align: center;
+      border-radius: 20px;
+      }
+
+      .ven4 form input{
+        width: 100%;
+        margin-top: 0px;
+        padding: 15px;
+        border:none;
+
+        font-size: 30px;
+        outline: none;
+      text-align: center;
+      border-radius: 15px;
+
+        }
+    .d{
+
+position: absolute;
+width: 20%;
+height: 50px;
+left: 13%;
+top: 9%;
+
+
+    }
+
+
+    .segundo{
+
+position: absolute;
+width: 60%;
+height: 400px;
+left: 25%;
+top: 30%;
+background-color: brown;
+border-radius: 20px;
+
+    }

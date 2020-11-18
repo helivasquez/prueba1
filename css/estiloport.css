@@ -1,0 +1,14 @@
+.btn-close-popup {
+    width:60px;
+    height: 60px;
+    position: absolute;
+    right: -20px;
+    left: 1%;
+    top: 2%;
+    padding: 10px;
+    background: rgb(68, 67, 67);
+    color: white;
+    border-radius: 50%;
+    line-height: 10px;
+
+    }
