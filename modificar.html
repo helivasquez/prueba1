@@ -65,7 +65,7 @@
 
        // var cargar = sessionStorage.buscar
 
-     fetch(`https://musicstationbackend201700852.herokuapp.com//Datosper/${cargar}`)
+     fetch(`https://music-station201700852api.vercel.app//Datosper/${cargar}`)
               .then(response => response.json())
               .catch(error => {
                 console.log(error)
@@ -105,7 +105,7 @@
         }
         console.log(objeto)
 
-        fetch(`https://musicstationbackend201700852.herokuapp.com//Datos/${Usuario}`, {
+        fetch(`https://music-station201700852api.vercel.app//Datos/${Usuario}`, {
         method: 'PUT',
         body: JSON.stringify(objeto),
         headers:{
@@ -126,7 +126,7 @@
 <script>
     function Eliminar(){
         var Usuario = document.querySelector('#usuario').value
-        fetch(`https://musicstationbackend201700852.herokuapp.com//Datos/${Usuario}`, {
+        fetch(`https://music-station201700852api.vercel.app//Datos/${Usuario}`, {
         method: 'DELETE',
 
         }).then(res => res.json())

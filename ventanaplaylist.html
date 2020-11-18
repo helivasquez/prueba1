@@ -43,7 +43,7 @@
         function CargarInfo(){
           var contenido = document.querySelector('#Cuerpo')
           contenido.innerHTML = ""
-            fetch('https://musicstationbackend201700852.herokuapp.com//c4')
+            fetch('https://music-station201700852api.vercel.app//c4')
             .then(response => response.json())
             .catch(error => {
                 console.log(error)

@@ -115,7 +115,7 @@ location.href = "Administrador.html"
         var cargar = sessionStorage.Usuario
 
          // var cargar = sessionStorage.buscar
-       fetch(`https://musicstationbackend201700852.herokuapp.com//Datosper/${cargar}`)
+       fetch(`https://music-station201700852api.vercel.app//Datosper/${cargar}`)
                 .then(response => response.json())
                 .catch(error => {
                   console.log(error)
@@ -161,7 +161,7 @@ var objeto = {
 }
 console.log(objeto)
 
-fetch(`https://musicstationbackend201700852.herokuapp.com//Datos/${Usuario}`, {
+fetch(`https://music-station201700852api.vercel.app//Datos/${Usuario}`, {
 method: 'PUT',
 body: JSON.stringify(objeto),
 headers:{

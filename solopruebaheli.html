@@ -77,7 +77,7 @@
             //nombre.innerHTML = `Bienvenido: </br> ${iniciado}`
 
             var tabla = document.querySelector('#CuerpoUsuarios')
-            fetch('https://musicstationbackend201700852.herokuapp.com//Datos')
+            fetch('https://music-station201700852api.vercel.app//Datos')
             .then(response => response.json())
             .catch(error => {
                 console.log(error)
@@ -132,7 +132,7 @@
       var contenido = document.querySelector('#Cuerpo')
       contenido.innerHTML = ""
 
-            fetch('https://musicstationbackend201700852.herokuapp.com//c')
+            fetch('https://music-station201700852api.vercel.app//c')
             .then(response => response.json())
 
             .catch(error => {
@@ -307,7 +307,7 @@ pdf.setFontSize(19);
   function informacion(){
 
   var cargar = sessionStorage.Usuario
-   fetch(`https://musicstationbackend201700852.herokuapp.com//Datosper/${cargar}`)
+   fetch(`https://music-station201700852api.vercel.app//Datosper/${cargar}`)
               .then(response => response.json())
               .catch(error => {
                 console.log(error)

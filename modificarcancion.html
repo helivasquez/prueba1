@@ -123,7 +123,7 @@ location.href = "canciones.html"
         var cargar = sessionStorage.artista
 
          // var cargar = sessionStorage.buscar
-       fetch(`https://musicstationbackend201700852.herokuapp.com//c2/${cargar}`)
+       fetch(`https://music-station201700852api.vercel.app//c2/${cargar}`)
                 .then(response => response.json())
                 .catch(error => {
                   console.log(error)
@@ -178,7 +178,7 @@ var objeto = {
 }
 console.log(objeto)
 
-fetch(`https://musicstationbackend201700852.herokuapp.com//cancion/${Artista}`, {
+fetch(`https://music-station201700852api.vercel.app//cancion/${Artista}`, {
 method: 'PUT',
 body: JSON.stringify(objeto),
 headers:{

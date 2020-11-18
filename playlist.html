@@ -132,7 +132,7 @@
          var cargar = sessionStorage.artista
 
 
-         fetch(`https://musicstationbackend201700852.herokuapp.com//c2/${cargar}`)
+         fetch(`https://music-station201700852api.vercel.app//c2/${cargar}`)
                   .then(response => response.json())
                   .catch(error => {
                     console.log(error)
@@ -185,7 +185,7 @@
       }
       console.log(objeto)
 
-      fetch('https://musicstationbackend201700852.herokuapp.com//comentario', {
+      fetch('https://music-station201700852api.vercel.app//comentario', {
 
       method: 'POST',
       body: JSON.stringify(objeto),
@@ -227,7 +227,7 @@
     var cargar = sessionStorage.Usuario
 
 
-       fetch(`https://musicstationbackend201700852.herokuapp.com//Datosper/${cargar}`)
+       fetch(`https://music-station201700852api.vercel.app//Datosper/${cargar}`)
                 .then(response => response.json())
                 .catch(error => {
                   console.log(error)
@@ -263,7 +263,7 @@
         var cargar = sessionStorage.artista
 
 
-           fetch(`https://musicstationbackend201700852.herokuapp.com//comentario/${cargar}`)
+           fetch(`https://music-station201700852api.vercel.app//comentario/${cargar}`)
                     .then(response => response.json())
                     .catch(error => {
                       console.log(error)

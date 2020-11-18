@@ -37,7 +37,7 @@
         var contenido = document.querySelector('#Cuerpo')
         contenido.innerHTML = ""
 
-              fetch('https://musicstationbackend201700852.herokuapp.com//cc')
+              fetch('https://music-station201700852api.vercel.app//cc')
               .then(response => response.json())
 
               .catch(error => {
@@ -89,7 +89,7 @@ async  function aceptar2(boton){
 <script>
   async  function infor(){
         var cargar = sessionStorage.nombre
-        fetch(`https://musicstationbackend201700852.herokuapp.com//c8/${cargar}`)
+        fetch(`https://music-station201700852api.vercel.app//c8/${cargar}`)
                  .then(response => response.json())
                  .catch(error => {
                    console.log(error)
@@ -111,7 +111,7 @@ async  function aceptar2(boton){
 <script>
     async  function infor2(){
           var cargar = sessionStorage.nombre
-          fetch(`https://musicstationbackend201700852.herokuapp.com//c8/${cargar}`)
+          fetch(`https://music-station201700852api.vercel.app//c8/${cargar}`)
                    .then(response => response.json())
                    .catch(error => {
                      console.log(error)
@@ -151,7 +151,7 @@ async  function aceptar2(boton){
           'youtube':Nombre7
       }
       console.log(objeto)
-      fetch('https://musicstationbackend201700852.herokuapp.com//cancion', {
+      fetch('https://music-station201700852api.vercel.app//cancion', {
       method: 'POST',
       body: JSON.stringify(objeto),
       headers:{
@@ -181,7 +181,7 @@ async  function aceptar2(boton){
 
     var borrar = document.querySelector('#Titulo').value
 
-        fetch(`https://musicstationbackend201700852.herokuapp.com//c8/${borrar}`, {
+        fetch(`https://music-station201700852api.vercel.app//c8/${borrar}`, {
         method: 'DELETE',
 
         }).then(res => res.json())

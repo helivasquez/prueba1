@@ -25,7 +25,7 @@
 
         function infor(){
           var cargar = sessionStorage.ar
-          fetch(`https://musicstationbackend201700852.herokuapp.com//c2/${cargar}`)
+          fetch(`https://music-station201700852api.vercel.app//c2/${cargar}`)
                    .then(response => response.json())
                    .catch(error => {
                      console.log(error)

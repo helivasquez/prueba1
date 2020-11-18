@@ -233,7 +233,7 @@ function Buscar(){
 }
 console.log(objeto)
 
-fetch('https://musicstationbackend201700852.herokuapp.com//Buscar', {
+fetch('https://music-station201700852api.vercel.app//Buscar', {
 
 method: 'POST',
 body: JSON.stringify(objeto),
@@ -319,7 +319,7 @@ if(response.message == "Failed"){
 
 
         var tabla = document.querySelector('#CuerpoUsuarios')
-        fetch('https://musicstationbackend201700852.herokuapp.com//Datos')
+        fetch('https://music-station201700852api.vercel.app//Datos')
         .then(response => response.json())
         .catch(error => {
             console.log(error)
@@ -412,7 +412,7 @@ document.getElementById("admins").style.display ="none";
   }
   console.log(objeto)
 
-  fetch('https://musicstationbackend201700852.herokuapp.com//Datosadmin', {
+  fetch('https://music-station201700852api.vercel.app//Datosadmin', {
 
   method: 'POST',
   body: JSON.stringify(objeto),
@@ -488,7 +488,7 @@ function inicio(){
       var cargar = sessionStorage.Usuario
 
 
-     fetch(`https://musicstationbackend201700852.herokuapp.com//Datosper/${cargar}`)
+     fetch(`https://music-station201700852api.vercel.app//Datosper/${cargar}`)
               .then(response => response.json())
               .catch(error => {
                 console.log(error)

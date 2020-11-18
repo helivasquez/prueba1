@@ -148,7 +148,7 @@
     function CargarInfo(){
       var contenido = document.querySelector('#Cuerpo')
       contenido.innerHTML = ""
-        fetch('https://musicstationbackend201700852.herokuapp.com//c')
+        fetch('https://music-station201700852api.vercel.app//c')
         .then(response => response.json())
         .catch(error => {
             console.log(error)
@@ -217,7 +217,7 @@ infor()
 
   async  function infor(){
     var cargar = sessionStorage.artista
-    fetch(`https://musicstationbackend201700852.herokuapp.com//c2/${cargar}`)
+    fetch(`https://music-station201700852api.vercel.app//c2/${cargar}`)
              .then(response => response.json())
              .catch(error => {
                console.log(error)
@@ -243,7 +243,7 @@ infor()
        'cancion2':Nombre1
    }
    console.log(objeto)
-   fetch('https://musicstationbackend201700852.herokuapp.com//agregados', {
+   fetch('https://music-station201700852api.vercel.app//agregados', {
    method: 'POST',
    body: JSON.stringify(objeto),
    headers:{
@@ -343,7 +343,7 @@ function inicio(){
   }
   console.log(objeto)
 
-  fetch('https://musicstationbackend201700852.herokuapp.com//Solicitud', {
+  fetch('https://music-station201700852api.vercel.app//Solicitud', {
 
   method: 'POST',
   body: JSON.stringify(objeto),
@@ -419,7 +419,7 @@ function form2(){
   }
   console.log(objeto)
 
-  fetch('https://musicstationbackend201700852.herokuapp.com//Buscar3', {
+  fetch('https://music-station201700852api.vercel.app//Buscar3', {
 
   method: 'POST',
   body: JSON.stringify(objeto),
@@ -468,7 +468,7 @@ function form2(){
       var cargar = sessionStorage.Usuario
 
 
-     fetch(`https://musicstationbackend201700852.herokuapp.com//Datosper/${cargar}`)
+     fetch(`https://music-station201700852api.vercel.app//Datosper/${cargar}`)
               .then(response => response.json())
               .catch(error => {
                 console.log(error)
